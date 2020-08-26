@@ -6,3 +6,4 @@ class Product(TimeStampedModel):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=2000)
     price = models.FloatField()
+    quantity = models.IntegerField()
