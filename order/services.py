@@ -15,6 +15,7 @@ def order_create(user: User, items: list) -> Order:
             product = Product.objects.get(id=item.get('product'))
 
             if product.quantity < item.get('quantity'):
+                order.delete()
                 raise ValidationError(
                     'There are not enough {product} in stock. Only have {quantity}'.format(product=product.name,
                                                                                            quantity=product.quantity))
@@ -25,6 +26,7 @@ def order_create(user: User, items: list) -> Order:
         raise ValidationError('One or more product does not exist')
 
     OrderProduct.objects.bulk_create(order_products)
+
     return order
 
 

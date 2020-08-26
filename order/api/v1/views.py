@@ -35,6 +35,7 @@ class OrderCreateView(AuthenticationMixin, APIView):
 
 
 class OrderListView(AuthenticationMixin, PaginatorMixin, APIView):
+    authenticated_methods = ('GET',)
     pagination_class = PageNumberPagination
 
     class OutputSerializer(serializers.Serializer):
